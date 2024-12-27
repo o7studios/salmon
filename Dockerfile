@@ -14,7 +14,7 @@ RUN chmod +x ./installer.sh && ./installer.sh
 RUN rm ./installer.sh -rf
 
 
-FROM --platform=$BUILDPLATFORM ghcr.io/graalvm/graalvm-community AS RUN
+FROM --platform=$BUILDPLATFORM ghcr.io/graalvm/graalvm-community AS run
 
 WORKDIR /paper
 
