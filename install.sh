@@ -16,4 +16,4 @@ else
     echo "No stable build for version $MINECRAFT_VERSION found :("
 fi
 
-curl -o viaversion.jar https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.1/PAPER/ViaVersion-5.4.1.jar
+curl -o ./plugins/viaversion.jar https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.1/PAPER/ViaVersion-5.4.1.jar
