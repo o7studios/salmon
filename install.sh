@@ -18,3 +18,19 @@ fi
 
 mkdir plugins
 curl -o ./plugins/viaversion.jar https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/5.4.1/PAPER/ViaVersion-5.4.1.jar
+
+PROJECT="floodgate"
+VERSION="2.2.4"
+
+LATEST_BUILD=$(curl -s https://download.geysermc.org/v2/projects/${PROJECT}/versions/${VERSION}/builds | \
+    jq -r '.builds | map(select(.channel == "default") | .build) | .[-1]')
+
+if [ "$LATEST_BUILD" != "null" ]; then
+    FILE_NAME=spigot
+    DOWNLOAD_URL="https://download.geysermc.org/v2/projects/${PROJECT}/versions/${VERSION}/builds/${LATEST_BUILD}/downloads/${FILE_NAME}"
+
+    curl -o ./plugins/floodgate.jar $DOWNLOAD_URL
+    echo "Download completed $DOWNLOAD_URL"
+else
+    echo "No stable build for version $VERSION found :("
+fi
