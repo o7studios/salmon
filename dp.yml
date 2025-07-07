@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salmon
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salmon
+  template:
+    metadata:
+      labels:
+        app: salmon
+        cheetah.o7.studio/app: minecraft
+        cheetah.o7.studio/fallback: "true"
+        dolphin.o7.studio/app: minecraft
+        dolphin.o7.studio/fallback: "true"
+    spec:
+      containers:
+        - name: salmon
+          image: ghcr.io/o7studios/salmon:latest
+          imagePullPolicy: "Always"
+          volumeMounts:
+            - name: floodgate
+              mountPath: /paper/plugins/floodgate/key.pem
+              subPath: key.pem
+              readOnly: true
+          ports:
+            - containerPort: 25565
+              name: minecraft
+      volumes:
+        - name: floodgate
+          secret:
+            secretName: floodgate
